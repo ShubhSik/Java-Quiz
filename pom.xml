@@ -10,7 +10,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <compile.java.version>21</compile.java.version>
-        <project.main.class>edu.sdccd.cisc190.Game</project.main.class>
+        <project.main.class>edu.sdccd.ui.QuizApp</project.main.class>
 
         <!-- Dependency Versions -->
         <jupiter.version>5.11.0</jupiter.version>
