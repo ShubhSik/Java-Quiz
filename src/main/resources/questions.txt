@@ -1,2 +1,4 @@
 MC;What is 2+2?;4;1,2,3,4
 TF;Java is a programming language.;True
+MC;What is 4+4?;8;2,3,8,9
+TF;Is the Earth round?;True
