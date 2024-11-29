@@ -17,7 +17,7 @@ public class Main extends Application {
     private Label timerLabel;
     private VBox optionsBox;
     private int currentQuestionIndex = 0;
-    private int timeLeft = 30; // 30 seconds timer
+    private int timeLeft = 300; // 300 seconds timer
     private ScheduledExecutorService timerExecutor;
 
     public static void main(String[] args) {
