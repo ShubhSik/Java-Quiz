@@ -2,22 +2,30 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+<!--This declares the Maven project using version 4.0.0 of the Maven model.
+It sets up the structure and dependencies for the Quiz Game project. -->
     <groupId>edu.sdccd.cisc190</groupId>
     <artifactId>java-quiz-1</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-
+<!-- groupId: Identifies the project's group (like a package name).
+artifactId: A unique name for this project (java-quiz-1).
+version: The version of the project (e.g., 1.0.0).
+packaging: Specifies the output as a JAR file, which can run or distribute the project. -->
     <name>Quiz Game</name>
     <description>A beginner-level Quiz Game showcasing Java concepts.</description>
     <url>https://github.com/your-repo/quiz-game</url>
-
+<!-- Provides metadata about the project:
+Name: "Quiz Game".
+Description: Explains the purpose of the project.
+URL: Link to the project repository (can be customized). -->
     <properties>
         <java.version>21</java.version> <!-- Update this if using a newer version -->
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
-
+<!-- Defines the Java version (e.g., 21) used for compiling the project.
+Sets the Maven compiler plugin to match this Java version for both the source and target bytecode. -->
     <dependencies>
         <!-- JavaFX Dependency -->
         <dependency>
@@ -34,7 +42,9 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+<!-- Adds dependencies required for the project:
+JavaFX: Provides graphical user interface components.
+JUnit: Supports writing and running unit tests (test scope means it's only used during testing). -->
     <build>
         <plugins>
             <!-- Compiler Plugin -->
@@ -47,7 +57,9 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
-
+<!-- Configures the Maven Compiler Plugin:
+Ensures the project is compiled using the specified Java version.
+Uses Maven’s default settings for compatibility with the java.version property. -->
             <!-- Maven Exec Plugin to Run JavaFX Application -->
             <plugin>
                 <groupId>org.openjfx</groupId>
@@ -66,7 +78,9 @@
             </plugin>
         </plugins>
     </build>
-
+<!-- Configures the JavaFX Maven Plugin:
+Allows running the JavaFX application directly using Maven.
+Specifies the main class (edu.sdccd.cisc190.Main) as the entry point for the program. -->
     <repositories>
         <!-- Repository for JavaFX Dependencies -->
         <repository>
@@ -74,4 +88,14 @@
             <url>https://openjfx.io/maven-repository/</url>
         </repository>
     </repositories>
+<!-- Adds the OpenJFX Repository:
+Ensures JavaFX libraries can be downloaded if not available in Maven’s central repository. -->
 </project>
+<!-- Purpose: The pom.xml file configures the Quiz Game project for Maven. It manages dependencies, compilers, plugins, and metadata.
+Key Features:
+Metadata: Defines project details (group ID, artifact ID, version, name).
+Dependencies: Includes JavaFX for the GUI and JUnit for testing.
+Compiler Configuration: Ensures compatibility with Java version 21.
+JavaFX Plugin: Enables running the JavaFX application with Maven.
+Custom Repository: Specifies OpenJFX for accessing JavaFX libraries.
+In short, the pom.xml file automates the setup and management of the Quiz Game project, streamlining the build and run process. -->
