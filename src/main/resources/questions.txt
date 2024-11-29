@@ -1,4 +1,20 @@
-MC;What is 2+2?;4;1,2,3,4
-TF;Java is a programming language.;True
-MC;What is 4+4?;8;2,3,8,9
 MC;What does JDK stand for?;Java Development Kit;Java Development Kit,Java Deployment Kit,Java Data Kit,Java Documentation Kit
+TF;JVM is responsible for compiling Java source code into bytecode;False
+MC;Why is it recommended to use meaningful variable names?;To make the code easier to understand;To make the program run faster,To avoid compilation errors,To use less memory,To make the code easier to understand
+TF;In Java, class names should always begin with an uppercase letter as a standard convention;True
+MC;What is the correct syntax for an if statement in Java?;if (condition) { };if (condition) then { },if condition then { },if (condition) { },if {condition}
+TF;The else block is mandatory when writing an if statement in Java;False
+MC;What keyword is used to define a method in Java?;void;define,static,void,method
+TF;A method in Java must always return a value;False
+MC;How do you declare an array in Java?;int array[] = new int[3];array = int[3];,int array = {1, 2, 3};,int[] array = [1, 2, 3];,int array[] = new int[3];
+TF;Java arrays have a fixed size that cannot be changed after they are created;True
+MC;Question: What keyword is used to inherit a class in Java?;extends;inherits,implements,super,extends
+TF;A Java class can inherit from multiple parent classes directly;False
+MC;What is polymorphism in Java?;Defining multiple methods with the same name but different parameters;Writing multiple classes in one file,Creating objects of multiple types in a single program None of the above,Defining multiple methods with the same name but different parameters
+TF;Polymorphism allows methods to have the same name but different implementations;True
+MC;Which Java package is used to create GUIs?;java.swing;java.awt,java.util, java.swing,java.gui
+TF;The java.awt package provides classes for creating graphical user interfaces;True
+MC;Which keyword is used to handle exceptions in Java?;try-catch;throw, exception,try-catch,catch
+TF;The finally block in Java is executed only if an exception is thrown;False
+MC;What is the purpose of the File class in Java?;To represent the properties of a file or directory;To store data in memory,To perform database operations,To manage file compression,To represent the properties of a file or directory
+TF;The File class in Java can be used to create directories;True
