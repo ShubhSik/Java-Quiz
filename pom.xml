@@ -14,7 +14,7 @@ version: The version of the project (e.g., 1.0.0).
 packaging: Specifies the output as a JAR file, which can run or distribute the project. -->
     <name>Quiz Game</name>
     <description>A beginner-level Quiz Game showcasing Java concepts.</description>
-    <url>https://github.com/your-repo/quiz-game</url>
+    <url>https://github.com/ShubhSik/Java-Quiz</url>
 <!-- Provides metadata about the project:
 Name: "Quiz Game".
 Description: Explains the purpose of the project.
@@ -33,12 +33,52 @@ Sets the Maven compiler plugin to match this Java version for both the source an
             <artifactId>javafx-controls</artifactId>
             <version>22.0.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>22.0.2</version>
+        </dependency>
 
         <!-- JUnit Dependency for Unit Testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.10.0</version>
+            <version>5.11.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.11.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.11.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- TestFX Core -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-core</artifactId>
+            <version>4.0.16-alpha</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- TestFX JUnit -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.16-alpha</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- TestNG dependency -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.10.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -60,7 +100,34 @@ JUnit: Supports writing and running unit tests (test scope means it's only used 
 <!-- Configures the Maven Compiler Plugin:
 Ensures the project is compiled using the specified Java version.
 Uses Maven’s default settings for compatibility with the java.version property. -->
+
+            <!-- Ensure JUnit Platform is used for tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.2</version>
+               <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/resources/testing.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+
             <!-- Maven Exec Plugin to Run JavaFX Application -->
+            <!-- Maven JAR Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>edu.sdccd.cisc190.Main</mainClass> <!-- Set your main class here -->
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>

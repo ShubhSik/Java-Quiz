@@ -73,6 +73,10 @@ It writes the score in the format Score: <number> and closes the file afterward.
 //This overrides the play method from the Game class.
 //it prints "Playing QuizGame!" to indicate the game is running.
     }
+
+    public boolean isGameOver() {
+        return false;
+    }
 }
 /*Purpose: The QuizGame class manages a quiz game by handling questions, scoring, and saving high scores.
 Key Features:

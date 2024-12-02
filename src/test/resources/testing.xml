@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="QuizGameTestSuite">
+    <!-- The Suite defines a group of tests to run together -->
+    <test name="QuizGameTest">
+        <!-- The Test tag specifies the test class to run -->
+        <classes>
+            <class name="edu.sdccd.cisc190.GameTest"/>
+            <class name="edu.sdccd.cisc190.MultipleChoiceQuestionTest"/>
+            <class name="edu.sdccd.cisc190.QuizGameTest"/>
+            <class name="edu.sdccd.cisc190.TrueFalseQuestionTest"/>
+            <class name="edu.sdccd.cisc190.QuizGameIntegrationTest"/>
+            <!-- Add any other test classes here -->
+        </classes>
+    </test>
+</suite>

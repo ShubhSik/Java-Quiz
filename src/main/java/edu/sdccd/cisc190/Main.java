@@ -22,24 +22,24 @@ public class Main extends Application {
     private Label timerLabel;
     private VBox optionsBox;
     private int currentQuestionIndex = 0;
-    private int timeLeft = 300; // 300 seconds timer
+    private int timeLeft = 60; // 60 seconds timer
     private ScheduledExecutorService timerExecutor;
-/*This defines the Main class that extends Application to create a JavaFX application.
-quizGame: Holds the main game logic.
-questionLabel: Displays the current question text.
-timerLabel: Shows the countdown timer.
-optionsBox: A vertical layout to display answer options.
-currentQuestionIndex: Tracks which question is currently being displayed.
-timeLeft: Sets the countdown timer to 300 seconds (5 minutes).
-timerExecutor: Manages the timer in the background using a scheduled executor service.
-*/
+    /*This defines the Main class that extends Application to create a JavaFX application.
+    quizGame: Holds the main game logic.
+    questionLabel: Displays the current question text.
+    timerLabel: Shows the countdown timer.
+    optionsBox: A vertical layout to display answer options.
+    currentQuestionIndex: Tracks which question is currently being displayed.
+    timeLeft: Sets the countdown timer to 300 seconds (5 minutes).
+    timerExecutor: Manages the timer in the background using a scheduled executor service.
+    */
     public static void main(String[] args) {
         launch(args);
     }
-/*The program’s entry point.
-Calls launch, which initializes the JavaFX environment and triggers the start method.
-*/
-    @Override
+    /*The program’s entry point.
+    Calls launch, which initializes the JavaFX environment and triggers the start method.
+    */
+   /* @Override
     public void start(Stage primaryStage) {
         quizGame = new QuizGame("Quiz Game");
 
@@ -52,8 +52,37 @@ Calls launch, which initializes the JavaFX environment and triggers the start me
 /*Creates a new QuizGame object and assigns it to quizGame.
 Loads questions from the file questions.txt. If an error occurs during loading, it shows an error message and exits the method.
 */
-        primaryStage.setTitle("Quiz Game");
+  /*      primaryStage.setTitle("Quiz Game");
+*/
 
+    @Override
+    public void start(Stage primaryStage) {
+        // Welcome Screen
+        Label banner = new Label("Welcome to the Quiz Game!");
+        banner.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+
+        Button startButton = new Button("Start Game");
+        startButton.setStyle("-fx-font-size: 18px;");
+        startButton.setOnAction(e -> showGameScreen(primaryStage));
+
+        VBox welcomeLayout = new VBox(20, banner, startButton);
+        welcomeLayout.setPrefSize(400, 300);
+        welcomeLayout.setStyle("-fx-alignment: center;");
+
+        primaryStage.setTitle("Quiz Game");
+        primaryStage.setScene(new Scene(welcomeLayout));
+        primaryStage.show();
+    }
+
+    private void showGameScreen(Stage primaryStage) {
+        quizGame = new QuizGame("Quiz Game");
+
+        try {
+            quizGame.loadQuestions("src/main/resources/questions.txt");
+        } catch (Exception e) {
+            showError("Error loading questions: " + e.getMessage());
+            return;
+        }
         questionLabel = new Label();
         timerLabel = new Label("Time left: " + timeLeft + " seconds");
         optionsBox = new VBox(10);
@@ -73,7 +102,7 @@ Displays the stage and calls startGame to begin the quiz.
  */
     }
 
-    private void startGame() {
+    public void startGame() {
         quizGame.startGame();
         showQuestion();
         startTimer();
@@ -129,7 +158,7 @@ Calls showQuestion() to display the next question.
 */
     }
 
-    private void startTimer() {
+    public void startTimer() {
         timerExecutor = Executors.newSingleThreadScheduledExecutor();
         timerExecutor.scheduleAtFixedRate(() -> {
             if (timeLeft > 0) {
@@ -147,7 +176,7 @@ Calls showQuestion() to display the next question.
 //When the timer reaches 0, stops the executor and ends the game.
     }
 
-    private void endGame() {
+    public void endGame() {
         quizGame.endGame();
         timerExecutor.shutdown();
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Game Over! Your Score: " + quizGame.getScore());
