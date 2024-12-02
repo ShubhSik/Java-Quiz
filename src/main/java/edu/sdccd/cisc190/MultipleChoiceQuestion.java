@@ -1,8 +1,8 @@
 package edu.sdccd.cisc190;
 //Specifies the folder (package) where this class belongs.
 public class MultipleChoiceQuestion extends Question {//Defines a MultipleChoiceQuestion class that inherits (extends) from a Question class.
-    private String correctAnswer;//A private variable to store the correct answer for the question.
-    private String[] choices;//A private array to hold the multiple-choice options for the question.
+    private final String correctAnswer;//A private variable to store the correct answer for the question.
+    private final String[] choices;//A private array to hold the multiple-choice options for the question.
 
     public MultipleChoiceQuestion(String questionText, String correctAnswer, String[] choices) {
         super(questionText);

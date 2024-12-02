@@ -1,7 +1,7 @@
 package edu.sdccd.cisc190;
 //Specifies the folder (package) where this class belongs.
 public abstract class Question {//This defines an abstract class called Question.
-    private String questionText;
+    private final String questionText;
 //A private variable to store the question text.
     public Question(String questionText) {
         this.questionText = questionText;

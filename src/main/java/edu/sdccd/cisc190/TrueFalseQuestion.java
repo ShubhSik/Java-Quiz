@@ -1,7 +1,7 @@
 package edu.sdccd.cisc190;
 //Specifies the folder (package) where this class belongs.
 public class TrueFalseQuestion extends Question {
-    private String correctAnswer;
+    private final String correctAnswer;
 /*Class Declaration:
 The TrueFalseQuestion class extends the Question class, meaning it inherits all the functionality of the Question class and can add its own specific features.
 Adds a new field, correctAnswer, which stores the correct "True" or "False" answer for this question type.

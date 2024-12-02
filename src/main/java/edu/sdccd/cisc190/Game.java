@@ -1,7 +1,7 @@
 package edu.sdccd.cisc190;
 //Specifies the package where this class resides.
 public abstract class Game {//Declares Game as an abstract class. You can’t create objects of this class; it’s meant to be extended by other classes.
-    private String gameName;//A private variable to store the name of the game. Only accessible inside this class.
+    private final String gameName;//A private variable to store the name of the game. Only accessible inside this class.
     private boolean isRunning;//Tracks if the game is currently running (true) or not (false).
 
     public Game(String gameName) {
@@ -22,8 +22,6 @@ public abstract class Game {//Declares Game as an abstract class. You can’t cr
     public boolean isRunning() {
         return isRunning;
     }
-//A method to check if the game is running. Returns true or false.
-    public abstract void play();
 //A placeholder method. Every class that extends Game must define how the game is played.
 }
 /*This Game class provides the basic structure for any game:

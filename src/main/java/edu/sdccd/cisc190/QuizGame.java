@@ -8,10 +8,10 @@ Imports ArrayList, a resizable array for managing lists of data dynamically.
 Imports the List interface, which ArrayList implements, for working with ordered collections flexibly.
  */
 public class QuizGame extends Game {
-    private List<Question> questions;
+    private final List<Question> questions;
     private int score;
-    private final String highScoresFile = "src/main/resources/highscores.txt";
-/*This defines the QuizGame class, which is a child of the Game class.
+
+    /*This defines the QuizGame class, which is a child of the Game class.
 It introduces three variables:
 questions stores a list of all quiz questions.
 score keeps track of the player’s current score.
@@ -47,6 +47,7 @@ If the line specifies a true/false question (TF), it creates a TrueFalseQuestion
 The method closes the file after reading all the questions.
 */
     public void saveHighScore(int score) throws IOException {
+        String highScoresFile = "src/main/resources/highscores.txt";
         BufferedWriter writer = new BufferedWriter(new FileWriter(highScoresFile, true));
         writer.write("Score: " + score + "\n");
         writer.close();
@@ -66,17 +67,7 @@ It writes the score in the format Score: <number> and closes the file afterward.
     public void incrementScore() {
         score++;
     }
-//incrementScore(): Increases the player’s score by 1.
-    @Override
-    public void play() {
-        System.out.println("Playing QuizGame!");
-//This overrides the play method from the Game class.
-//it prints "Playing QuizGame!" to indicate the game is running.
-    }
 
-    public boolean isGameOver() {
-        return false;
-    }
 }
 /*Purpose: The QuizGame class manages a quiz game by handling questions, scoring, and saving high scores.
 Key Features:
