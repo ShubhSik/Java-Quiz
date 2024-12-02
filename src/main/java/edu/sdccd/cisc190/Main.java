@@ -22,7 +22,7 @@ public class Main extends Application {
     private Label timerLabel;
     private VBox optionsBox;
     private int currentQuestionIndex = 0;
-    private int timeLeft = 60; // 60 seconds timer
+    private int timeLeft = 300; // 60 seconds timer
     private ScheduledExecutorService timerExecutor;
     /*This defines the Main class that extends Application to create a JavaFX application.
     quizGame: Holds the main game logic.
@@ -52,8 +52,8 @@ public class Main extends Application {
 /*Creates a new QuizGame object and assigns it to quizGame.
 Loads questions from the file questions.txt. If an error occurs during loading, it shows an error message and exits the method.
 */
-  /*      primaryStage.setTitle("Quiz Game");
-*/
+    /*      primaryStage.setTitle("Quiz Game");
+     */
 
     @Override
     public void start(Stage primaryStage) {
@@ -84,15 +84,27 @@ Loads questions from the file questions.txt. If an error occurs during loading, 
             return;
         }
         questionLabel = new Label();
+        questionLabel.setWrapText(true); // Enables text wrapping
+        questionLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-alignment: center;");
+
         timerLabel = new Label("Time left: " + timeLeft + " seconds");
-        optionsBox = new VBox(10);
+        timerLabel.setStyle("-fx-font-size: 16px;");
+        optionsBox = new VBox(15);
 /*Sets the window title to "Quiz Game."
 Initializes labels and a vertical layout box (VBox) to display the question, answer options, and the timer.
  */
-        VBox root = new VBox(20, questionLabel, optionsBox, timerLabel);
+   /*     VBox root = new VBox(20, questionLabel, optionsBox, timerLabel);
         root.setPrefSize(400, 300);
 
         primaryStage.setScene(new Scene(root));
+        primaryStage.show(); */
+
+        VBox gameLayout = new VBox(30, questionLabel, optionsBox, timerLabel);
+        gameLayout.setPrefSize(600, 400); // Increased page size
+        gameLayout.setStyle("-fx-padding: 30; -fx-alignment: top-center; -fx-spacing: 20;");
+
+        primaryStage.setScene(new Scene(gameLayout));
+       /* primaryStage.setScene(new Scene(root, 600, 400)); */
         primaryStage.show();
 
         startGame();
