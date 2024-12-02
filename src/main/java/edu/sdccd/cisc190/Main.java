@@ -36,24 +36,6 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    /*The program’s entry point.
-    Calls launch, which initializes the JavaFX environment and triggers the start method.
-    */
-   /* @Override
-    public void start(Stage primaryStage) {
-        quizGame = new QuizGame("Quiz Game");
-
-        try {
-            quizGame.loadQuestions("src/main/resources/questions.txt");
-        } catch (Exception e) {
-            showError("Error loading questions: " + e.getMessage());
-            return;
-        }
-/*Creates a new QuizGame object and assigns it to quizGame.
-Loads questions from the file questions.txt. If an error occurs during loading, it shows an error message and exits the method.
-*/
-    /*      primaryStage.setTitle("Quiz Game");
-     */
 
     @Override
     public void start(Stage primaryStage) {
@@ -93,11 +75,6 @@ Loads questions from the file questions.txt. If an error occurs during loading, 
 /*Sets the window title to "Quiz Game."
 Initializes labels and a vertical layout box (VBox) to display the question, answer options, and the timer.
  */
-   /*     VBox root = new VBox(20, questionLabel, optionsBox, timerLabel);
-        root.setPrefSize(400, 300);
-
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show(); */
 
         VBox gameLayout = new VBox(30, questionLabel, optionsBox, timerLabel);
         gameLayout.setPrefSize(600, 400); // Increased page size
