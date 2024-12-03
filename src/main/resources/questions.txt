@@ -6,11 +6,10 @@ MC;What is the correct syntax for an if statement in Java?;if (condition) { };if
 TF;The else block is mandatory when writing an if statement in Java;False
 MC;What keyword is used to define a method in Java?;void;define,static,void,method
 TF;A method in Java must always return a value;False
-MC;How do you declare an array in Java?;int array[] = new int[3];array = int[3];,int array = {1, 2, 3};,int[] array = [1, 2, 3];,int array[] = new int[3];
 TF;Java arrays have a fixed size that cannot be changed after they are created;True
 MC;Question: What keyword is used to inherit a class in Java?;extends;inherits,implements,super,extends
 TF;A Java class can inherit from multiple parent classes directly;False
-MC;What is polymorphism in Java?;Defining multiple methods with the same name but different parameters;Writing multiple classes in one file,Creating objects of multiple types in a single program None of the above,Defining multiple methods with the same name but different parameters
+MC;What is polymorphism in Java?;Defining multiple methods with the same name but different parameters;Writing multiple classes in one file,Creating objects of multiple types in a single program, None of the above,Defining multiple methods with the same name but different parameters
 TF;Polymorphism allows methods to have the same name but different implementations;True
 MC;Which Java package is used to create GUIs?;java.swing;java.awt,java.util, java.swing,java.gui
 TF;The java.awt package provides classes for creating graphical user interfaces;True
