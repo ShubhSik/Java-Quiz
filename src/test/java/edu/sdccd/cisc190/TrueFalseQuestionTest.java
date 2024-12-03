@@ -1,5 +1,5 @@
 package edu.sdccd.cisc190;
-
+//Specifies the folder (package) where this class belongs.
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

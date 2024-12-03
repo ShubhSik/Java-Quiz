@@ -9,10 +9,10 @@ public class MultipleChoiceQuestion extends Question {//Defines a MultipleChoice
         this.correctAnswer = correctAnswer;
         this.choices = choices;
     }
-/*A constructor that:
-Calls the parent Question class constructor to set the question text (super(questionText)).
-Saves the correct answer and choices provided when the object is created.
- */
+/* Constructor:
+Calls the parent Question constructor to set the question text.
+Initializes the correct answer and choices.
+*/
     public String[] getChoices() {
         return choices;
     }
@@ -21,12 +21,7 @@ Saves the correct answer and choices provided when the object is created.
     public boolean checkAnswer(String answer) {
         return correctAnswer.equalsIgnoreCase(answer);
     }
-/*This method overrides the checkAnswer method from the Question class.
-It checks if the given answer matches the correct one, ignoring case differences. Returns true if it matches, otherwise false.
- */
+//Checks if the player's answer matches the correct one
 }
-/*This class extends a general Question class to create a multiple-choice question.
+//This class extends a general Question class to create a multiple-choice question.
 
-It adds a list of answer choices (choices) and a correct answer (correctAnswer).
-The checkAnswer method ensures the user's response matches the correct answer, regardless of case.
- */
