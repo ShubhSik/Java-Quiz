@@ -23,9 +23,10 @@ An interactive quiz game developed in Java, showcasing fundamental concepts, Jav
 * Saves high scores to a file (highscores.txt).
 
 ## Prerequisites
-- Maven 3
+- git 2
+- maven 3
 - JDK 21
-- OpenJDK 21
+- OpenJavaFX 21
 
 ## Setup and Execution
 ### Clone the Repository
