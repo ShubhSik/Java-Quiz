@@ -6,6 +6,7 @@ MC;What is the correct syntax for an if statement in Java?;if (condition) { };if
 TF;The else block is mandatory when writing an if statement in Java;False
 MC;What keyword is used to define a method in Java?;void;define,static,void,method
 TF;A method in Java must always return a value;False
+MC;What does inheritance in Java allow you to do?;Share methods and fields between a parent and child class;Create unrelated classes,Protect private fields,Share methods and fields between a parent and child class,None of the above
 TF;Java arrays have a fixed size that cannot be changed after they are created;True
 MC;Question: What keyword is used to inherit a class in Java?;extends;inherits,implements,super,extends
 TF;A Java class can inherit from multiple parent classes directly;False
