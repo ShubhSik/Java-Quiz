@@ -61,8 +61,8 @@ An interactive quiz game developed in Java, showcasing fundamental concepts, Jav
 - You have a limited time to answer each question (tracked by the countdown timer).
 - After the game ends, your score is saved to highscores.txt.
 
-  ![Start Quiz](src/main/resources/start.png)
-  ![Start Quiz](src/main/resources/questions.png)
+  ![Start Quiz](src/main/resources/start.PNG)
+  ![Start Quiz](src/main/resources/questions.PNG)
 
 ## Testing
 ### Unit Tests
