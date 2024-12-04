@@ -1,12 +1,26 @@
 package edu.sdccd.cisc190;
-//Specifies the folder (package) where this class belongs.
+
 import org.junit.jupiter.api.Test;
-//Import: Allows marking methods with @Test for testing.
 import static org.junit.jupiter.api.Assertions.*;
-//Assertions: Provides methods like assertTrue, assertEquals, and fail to verify test results.
+
+/**
+ * Integration tests for the {@code QuizGame} class.
+ * <p>
+ * This class tests the full flow of the game, from loading questions to starting the game,
+ * updating the score, and ending the game.
+ * </p>
+ */
 class QuizGameIntegrationTest {
+
+    /**
+     * Tests the complete game flow including loading questions, starting the game, scoring, and ending the game.
+     * <p>
+     * This test verifies that:
+     * </p>
+     */
     @Test
     void testFullGameFlow() {
+        // Arrange: Set up a new quiz game and load questions from a file.
         QuizGame quizGame = new QuizGame("Integration Test");
         try {
             quizGame.loadQuestions("src/test/resources/Questions.txt");
@@ -14,20 +28,19 @@ class QuizGameIntegrationTest {
             fail("Failed to load questions: " + e.getMessage());
         }
 
+        // Assert: Ensure that the questions were loaded correctly (expect 2 questions).
         assertEquals(2, quizGame.getQuestions().size());
 
+        // Act: Start the game and assert that it is running.
         quizGame.startGame();
         assertTrue(quizGame.isRunning());
 
+        // Act: Increment the score and verify it.
         quizGame.incrementScore();
         assertEquals(1, quizGame.getScore());
 
+        // Act: End the game and verify that it has stopped.
         quizGame.endGame();
         assertFalse(quizGame.isRunning());
     }
-/*Loads questions into the game and ensures there are two.
-Verifies the game starts and updates the score correctly.
-Ensures the game stops when ended.
- */
 }
-//Tests the full flow of the QuizGame, including loading questions, starting/stopping the game, and scoring.

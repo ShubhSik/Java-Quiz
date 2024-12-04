@@ -1,30 +1,53 @@
 package edu.sdccd.cisc190;
-//Specifies the folder (package) where this class belongs.
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-/* Imports:
-File handling (reading/writing files).
-ArrayList for managing dynamic lists.
-List interface for ordered collections.
-*/
+
+/**
+ * Represents a quiz game that manages questions, scoring, and high scores.
+ * <p>
+ * This class extends the {@code Game} class and provides specific functionality
+ * for managing quiz questions and scores, loading questions from a file, and saving high scores.
+ * </p>
+ */
 public class QuizGame extends Game {
+
+    /**
+     * A list of questions for the quiz game.
+     */
     private final List<Question> questions;
+
+    /**
+     * The player's current score in the game.
+     */
     private int score;
 
-/*Manages:
-A list of questions for the quiz.
-The player's current score.
-*/
+    /**
+     * Constructs a new {@code QuizGame} with the specified game name.
+     * <p>
+     * Initializes an empty list of questions and sets the initial score to 0.
+     * </p>
+     *
+     * @param gameName the name of the game
+     */
     public QuizGame(String gameName) {
         super(gameName);
         this.questions = new ArrayList<>();
         this.score = 0;
     }
-/* Constructor:
-Calls the parent Game class to set the game name.
-Initializes an empty list of questions and sets score to 0.
-*/
+
+    /**
+     * Loads questions from a specified file.
+     * <p>
+     * The file should contain questions in a specific format where each line represents a question:
+     * For multiple-choice questions (MC): "MC;questionText;correctAnswer;choice1,choice2,choice3"
+     * For true/false questions (TF): "TF;questionText;correctAnswer"
+     * </p>
+     *
+     * @param filePath the path to the file containing questions
+     * @throws IOException if an I/O error occurs while reading the file
+     */
     public void loadQuestions(String filePath) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String line;
@@ -39,34 +62,46 @@ Initializes an empty list of questions and sets score to 0.
         }
         reader.close();
     }
-/*Loads questions from a file:
-Reads each line, splits it into parts, and determines the type (MC or TF).
-Adds the corresponding question to the list.
-Closes the file after reading.
-*/
 
+    /**
+     * Saves the player's high score to a file.
+     * <p>
+     * The score is appended to a file named "highscores.txt" in the format:
+     * "Score: &lt;number&gt;"
+     * </p>
+     *
+     * @param score the player's score to save
+     * @throws IOException if an I/O error occurs while writing to the file
+     */
     public void saveHighScore(int score) throws IOException {
         String highScoresFile = "src/main/resources/highscores.txt";
         BufferedWriter writer = new BufferedWriter(new FileWriter(highScoresFile, true));
         writer.write("Score: " + score + "\n");
         writer.close();
     }
-/* Saves the player's score to a file:
-Appends the score to the high scores file.
-Writes in the format "Score: <number>".
-Closes the file.
-*/
+
+    /**
+     * Returns the list of questions in the game.
+     *
+     * @return a list of {@code Question} objects
+     */
     public List<Question> getQuestions() {
         return questions;
     }
-    // Returns the list of quiz questions
+
+    /**
+     * Returns the player's current score.
+     *
+     * @return the current score
+     */
     public int getScore() {
         return score;
     }
-    // Returns the player's current score.
+
+    /**
+     * Increments the player's score by 1.
+     */
     public void incrementScore() {
         score++;
     }
-    // Increases the player's score by 1.
 }
-//Purpose: The QuizGame class manages a quiz game by handling questions, scoring, and saving high scores.

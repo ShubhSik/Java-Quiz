@@ -1,20 +1,45 @@
 package edu.sdccd.cisc190;
-//Specifies the folder (package) where this class belongs.
-public abstract class Question {//This defines an abstract class called Question.
+
+/**
+ * Represents a general question in a quiz or game.
+ * <p>
+ * This is an abstract base class that provides the common functionality of storing
+ * the question text and defines an abstract method for answer validation.
+ * </p>
+ */
+public abstract class Question {
+
+    /**
+     * The text of the question.
+     */
     private final String questionText;
-//A private variable to store the question text.
+
+    /**
+     * Constructs a new {@code Question} with the specified question text.
+     *
+     * @param questionText the text of the question
+     */
     public Question(String questionText) {
         this.questionText = questionText;
     }
-/* Constructor:
-Initializes the question text.
-Saves the given text into the questionText variable.
-*/
+
+    /**
+     * Returns the text of the question.
+     *
+     * @return the question text
+     */
     public String getQuestionText() {
         return questionText;
     }
-//Returns the question text when called.
+
+    /**
+     * Checks if the provided answer is correct.
+     * <p>
+     * This method must be implemented by subclasses to define specific answer-checking logic.
+     * </p>
+     *
+     * @param answer the answer to validate
+     * @return {@code true} if the answer is correct, {@code false} otherwise
+     */
     public abstract boolean checkAnswer(String answer);
-//An abstract method. Subclasses must implement and check if the given answer is correct.
 }
-//This Question class handles storing the question text and leaves the answer-checking logic for other classes to figure out.

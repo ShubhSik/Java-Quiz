@@ -1,27 +1,60 @@
 package edu.sdccd.cisc190;
-//Specifies the folder (package) where this class belongs.
-public class MultipleChoiceQuestion extends Question {//Defines a MultipleChoiceQuestion class that inherits (extends) from a Question class.
-    private final String correctAnswer;//A private variable to store the correct answer for the question.
-    private final String[] choices;//A private array to hold the multiple-choice options for the question.
 
+/**
+ * Represents a multiple-choice question.
+ * <p>
+ * This class extends the {@link Question} class to provide functionality specific to
+ * multiple-choice questions, such as storing choices and verifying answers.
+ * </p>
+ */
+public class MultipleChoiceQuestion extends Question {
+
+    /**
+     * The correct answer for the question.
+     */
+    private final String correctAnswer;
+
+    /**
+     * An array of possible choices for the question.
+     */
+    private final String[] choices;
+
+    /**
+     * Constructs a new {@code MultipleChoiceQuestion} with the specified question text,
+     * correct answer, and list of choices.
+     *
+     * @param questionText  the text of the question
+     * @param correctAnswer the correct answer for the question
+     * @param choices       an array of possible choices for the question
+     */
     public MultipleChoiceQuestion(String questionText, String correctAnswer, String[] choices) {
-        super(questionText);
+        super(questionText); // Calls the constructor of the parent Question class
         this.correctAnswer = correctAnswer;
         this.choices = choices;
     }
-/* Constructor:
-Calls the parent Question constructor to set the question text.
-Initializes the correct answer and choices.
-*/
+
+    /**
+     * Returns the list of choices for this question.
+     *
+     * @return an array of strings representing the possible choices
+     */
     public String[] getChoices() {
         return choices;
     }
-//A method to return the array of choices so they can be displayed or accessed later.
+
+    /**
+     * Checks if the provided answer matches the correct answer for this question.
+     * <p>
+     * The comparison is case-insensitive.
+     * </p>
+     *
+     * @param answer the answer to verify
+     * @return {@code true} if the answer is correct, {@code false} otherwise
+     */
     @Override
     public boolean checkAnswer(String answer) {
         return correctAnswer.equalsIgnoreCase(answer);
     }
-//Checks if the player's answer matches the correct one
 }
-//This class extends a general Question class to create a multiple-choice question.
+
 

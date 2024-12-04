@@ -1,5 +1,5 @@
 package edu.sdccd.cisc190;
-//Specifies the folder (package) where this class belongs.
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -10,24 +10,39 @@ import javafx.stage.Stage;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-// Imports tools for JavaFX UI and background timer functionality.
+
+/**
+ * The Main class serves as the entry point for the Quiz Game application.
+ * <p>
+ * This JavaFX-based application provides an interactive quiz game with a countdown timer.
+ * It initializes the user interface, manages game logic, and handles user interactions.
+ * </p>
+ */
 public class Main extends Application {
     private QuizGame quizGame;
     private Label questionLabel;
     private Label timerLabel;
     private VBox optionsBox;
     private int currentQuestionIndex = 0;
-    private int timeLeft = 300; // 300 seconds timer
+    private int timeLeft = 300; // Timer duration in seconds (5 minutes)
     private ScheduledExecutorService timerExecutor;
-    // Variables for managing the game, timer, and UI elements.
+
+    /**
+     * The main method that launches the JavaFX application.
+     *
+     * @param args command-line arguments (not used).
+     */
     public static void main(String[] args) {
         launch(args);
     }
-    // Launches the JavaFX app.
 
+    /**
+     * Sets up the initial welcome screen and displays the start button.
+     *
+     * @param primaryStage the primary stage for the application.
+     */
     @Override
     public void start(Stage primaryStage) {
-        // Displays a welcome screen with a start button.
         Label banner = new Label("Welcome to the Quiz Game!");
         banner.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
 
@@ -43,7 +58,12 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(welcomeLayout));
         primaryStage.show();
     }
-    // Sets up the game screen with questions, options, and a timer.
+
+    /**
+     * Transitions to the game screen, initializes the quiz game, and loads questions.
+     *
+     * @param primaryStage the primary stage for the application.
+     */
     private void showGameScreen(Stage primaryStage) {
         quizGame = new QuizGame("Quiz Game");
 
@@ -53,38 +73,48 @@ public class Main extends Application {
             showError("Error loading questions: " + e.getMessage());
             return;
         }
+
         questionLabel = new Label();
-        questionLabel.setWrapText(true); // Enables text wrapping
+        questionLabel.setWrapText(true);
         questionLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-alignment: center;");
 
         timerLabel = new Label("Time left: " + timeLeft + " seconds");
         timerLabel.setStyle("-fx-font-size: 16px;");
+
         optionsBox = new VBox(15);
 
         VBox gameLayout = new VBox(30, questionLabel, optionsBox, timerLabel);
-        gameLayout.setPrefSize(600, 400); // Increased page size
+        gameLayout.setPrefSize(600, 400);
         gameLayout.setStyle("-fx-padding: 30; -fx-alignment: top-center; -fx-spacing: 20;");
 
         primaryStage.setScene(new Scene(gameLayout));
-       // primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
 
         startGame();
     }
 
+    /**
+     * Starts the quiz game by displaying the first question and initializing the timer.
+     */
     public void startGame() {
-        // Starts the game and displays the first question.
         quizGame.startGame();
         showQuestion();
         startTimer();
     }
 
+    /**
+     * Displays the current question and its answer options.
+     * <p>
+     * Handles both multiple-choice and true/false questions.
+     * Ends the game if there are no more questions.
+     * </p>
+     */
     private void showQuestion() {
         if (currentQuestionIndex >= quizGame.getQuestions().size()) {
             endGame();
-            return; // Ends the game if no more questions are left.
+            return;
         }
-        // Shows the current question and answer options.
+
         Question question = quizGame.getQuestions().get(currentQuestionIndex);
         questionLabel.setText(question.getQuestionText());
         optionsBox.getChildren().clear();
@@ -105,8 +135,15 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Handles the user's answer selection.
+     * <p>
+     * Validates the answer, updates the score if correct, and moves to the next question.
+     * </p>
+     *
+     * @param answer the answer selected by the user.
+     */
     private void handleAnswer(String answer) {
-        // Checks if the answer is correct, updates score, and shows the next question.
         Question question = quizGame.getQuestions().get(currentQuestionIndex);
         if (question.checkAnswer(answer)) {
             quizGame.incrementScore();
@@ -115,13 +152,17 @@ public class Main extends Application {
         showQuestion();
     }
 
+    /**
+     * Starts the countdown timer for the quiz.
+     * <p>
+     * Updates the timer label every second and ends the game when the timer reaches zero.
+     * </p>
+     */
     public void startTimer() {
-        // Starts a countdown timer that updates the label every second.
         timerExecutor = Executors.newSingleThreadScheduledExecutor();
         timerExecutor.scheduleAtFixedRate(() -> {
             if (timeLeft > 0) {
                 timeLeft--;
-                // Use Platform.runLater to ensure timer updates are done on the JavaFX application thread
                 Platform.runLater(() -> timerLabel.setText("Time left: " + timeLeft + " seconds"));
             } else {
                 timerExecutor.shutdown();
@@ -130,24 +171,34 @@ public class Main extends Application {
         }, 0, 1, TimeUnit.SECONDS);
     }
 
+    /**
+     * Ends the quiz game and displays the final score.
+     * <p>
+     * Saves the high score and terminates the application.
+     * </p>
+     */
     public void endGame() {
-        // Stops the game, shows the final score, and saves it.
         quizGame.endGame();
         timerExecutor.shutdown();
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Game Over! Your Score: " + quizGame.getScore());
         alert.showAndWait();
+
         try {
             quizGame.saveHighScore(quizGame.getScore());
         } catch (Exception e) {
             showError("Error saving high score: " + e.getMessage());
         }
+
         System.exit(0);
     }
 
+    /**
+     * Displays an error message in an alert dialog.
+     *
+     * @param message the error message to display.
+     */
     private void showError(String message) {
-        // Shows an error message in a dialog box.
         Alert alert = new Alert(Alert.AlertType.ERROR, message);
         alert.showAndWait();
     }
 }
-//Purpose: The Main class is the entry point for the quiz game. It sets up the user interface, handles game logic, and manages a timer using JavaFX.

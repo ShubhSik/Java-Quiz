@@ -1,23 +1,40 @@
 package edu.sdccd.cisc190;
-//Specifies the folder (package) where this class belongs.
+
 import org.junit.jupiter.api.Test;
-//Allows marking methods as test cases in JUnit 5.
 import static org.junit.jupiter.api.Assertions.*;
-//Provides assertion methods like assertTrue and assertFalse to validate test conditions.
+
+/**
+ * Unit tests for the {@code Game} class.
+ * <p>
+ * This class verifies the functionality of starting and ending a game using JUnit 5.
+ * </p>
+ */
 class GameTest {
+
+    /**
+     * Tests the {@code startGame} and {@code endGame} methods of the {@code Game} class.
+     * <p>
+     * Validates the following:
+     * </p>
+     */
     @Test
     void testStartAndEndGame() {
+        // Arrange: Create a new QuizGame instance.
         Game game = new QuizGame("Test Quiz");
-        assertFalse(game.isRunning());//Confirms game isn't running initially.
 
+        // Assert: Verify that the game is not running initially.
+        assertFalse(game.isRunning());
+
+        // Act: Start the game.
         game.startGame();
-        assertTrue(game.isRunning());// Verifies the game starts properly.
 
+        // Assert: Verify that the game is running after starting.
+        assertTrue(game.isRunning());
+
+        // Act: End the game.
         game.endGame();
-        assertFalse(game.isRunning());// Ensures the game stops correctly.
+
+        // Assert: Verify that the game is no longer running after stopping.
+        assertFalse(game.isRunning());
     }
-/*Checks the game starts and stops as expected.
-Uses assertions to confirm the game's running state.
- */
 }
-//Purpose: Tests if startGame and endGame work properly.
