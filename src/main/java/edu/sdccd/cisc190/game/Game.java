@@ -37,7 +37,7 @@ public abstract class Game {
      */
     public void startGame() {
         isRunning = true;
-        System.out.println(gameName + "%s has started!" gameName);
+        System.out.printf("%s has started!", gameName);
     }
     /**
      * Ends the game by setting the status to not running and printing an end message.
