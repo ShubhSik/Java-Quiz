@@ -15,12 +15,19 @@ import java.util.List;
  * for managing quiz questions and scores, loading questions from a file, and saving high scores.
  * </p>
  */
+
+//TODO: Integrate JavaFX UI to display questions and collect answers interactively.
+
 public class QuizGame extends Game {
+    //TODO: Implement a game timer using a background thread to track the elapsed time.
+//      Example: Use Thread.sleep() in a loop and update the timer in the console or GUI.
 
     /**
      * A list of questions for the quiz game.
      */
     private final List<Question> questions;
+ // TODO: Consider using an array if the number of questions is fixed.
+
 
     /**
      * The player's current score in the game.
@@ -52,20 +59,20 @@ public class QuizGame extends Game {
      * @param filePath the path to the file containing questions
      * @throws IOException if an I/O error occurs while reading the file
      */
+    // explination is to Catch and handle exceptions gracefully. Update the UI to notify users of issues and allow retrying.
     public void loadQuestions(String filePath) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(filePath));
-        String line;
-
-        while ((line = reader.readLine()) != null) {
-            String[] parts = line.split(";");
-            if (parts[0].equalsIgnoreCase("MC")) {
-                questions.add(new MultipleChoiceQuestion(parts[1], parts[2], parts[3].split(",")));
-            } else if (parts[0].equalsIgnoreCase("TF")) {
-                questions.add(new TrueFalseQuestion(parts[1], parts[2]));
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Parsing logic here
             }
+        } catch (IOException e) {
+            //TODO: Notify user of the error via GUI and provide a retry option.
+            throw new IOException("Error reading questions file: " + filePath, e);
         }
-        reader.close();
     }
+
+
 
     /**
      * Saves the player's high score to a file.
@@ -78,11 +85,13 @@ public class QuizGame extends Game {
      * @throws IOException if an I/O error occurs while writing to the file
      */
     public void saveHighScore(int score) throws IOException {
+        //TODO: Confirm file location is writable and handle potential IOException with user notification.
         String highScoresFile = "src/main/resources/highscores.txt";
         BufferedWriter writer = new BufferedWriter(new FileWriter(highScoresFile, true));
         writer.write("Score: " + score + "\n");
         writer.close();
     }
+
 
 
     //TODO: create a leaderboard that stores the user's best time/high scores

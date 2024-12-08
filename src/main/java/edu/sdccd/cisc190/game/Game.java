@@ -19,6 +19,10 @@ public abstract class Game {
      */
 
     private boolean isRunning;
+    //TODO: Use protected visibility for 'isRunning' if subclasses need access. Otherwise, leave it private
+ // This could be protected depending on design needs.
+
+
 
 
     /**
