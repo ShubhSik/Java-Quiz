@@ -1,4 +1,4 @@
-package edu.sdccd.cisc190;
+package edu.sdccd.cisc190.question;
 
 /**
  * Represents a multiple-choice question.

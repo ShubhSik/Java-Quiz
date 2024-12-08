@@ -1,4 +1,8 @@
-package edu.sdccd.cisc190;
+package edu.sdccd.cisc190.game;
+
+import edu.sdccd.cisc190.question.MultipleChoiceQuestion;
+import edu.sdccd.cisc190.question.Question;
+import edu.sdccd.cisc190.question.TrueFalseQuestion;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -80,6 +84,8 @@ public class QuizGame extends Game {
         writer.close();
     }
 
+
+    //TODO: create a leaderboard that stores the user's best time/high scores
     /**
      * Returns the list of questions in the game.
      *

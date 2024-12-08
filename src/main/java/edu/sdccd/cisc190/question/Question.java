@@ -1,4 +1,4 @@
-package edu.sdccd.cisc190;
+package edu.sdccd.cisc190.question;
 
 /**
  * Represents a general question in a quiz or game.

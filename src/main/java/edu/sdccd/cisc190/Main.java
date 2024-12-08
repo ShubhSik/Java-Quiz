@@ -1,5 +1,9 @@
 package edu.sdccd.cisc190;
 
+import edu.sdccd.cisc190.game.QuizGame;
+import edu.sdccd.cisc190.question.MultipleChoiceQuestion;
+import edu.sdccd.cisc190.question.Question;
+import edu.sdccd.cisc190.question.TrueFalseQuestion;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -110,6 +114,7 @@ public class Main extends Application {
      * </p>
      */
     private void showQuestion() {
+      //TODO: Create an exception for out-of-bounds index.
         if (currentQuestionIndex >= quizGame.getQuestions().size()) {
             endGame();
             return;
@@ -171,6 +176,11 @@ public class Main extends Application {
         }, 0, 1, TimeUnit.SECONDS);
     }
 
+
+    //TODO: alert the user after every minute passes by
+
+    //TODO: Change the font color of the timer to red  when the time reaches 30 seconds left
+    //TODO: could add some color to the game
     /**
      * Ends the quiz game and displays the final score.
      * <p>

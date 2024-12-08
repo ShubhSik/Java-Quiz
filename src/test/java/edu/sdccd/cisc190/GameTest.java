@@ -1,5 +1,7 @@
 package edu.sdccd.cisc190;
 
+import edu.sdccd.cisc190.game.Game;
+import edu.sdccd.cisc190.game.QuizGame;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,5 +1,6 @@
 package edu.sdccd.cisc190;
 
+import edu.sdccd.cisc190.game.QuizGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
