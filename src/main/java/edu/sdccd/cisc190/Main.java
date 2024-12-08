@@ -6,7 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+import java.util.Collections; //add import statement for shuffling
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -22,10 +23,15 @@ public class Main extends Application {
     private QuizGame quizGame;
     private Label questionLabel;
     private Label timerLabel;
+    private Label scoreLabel;
     private VBox optionsBox;
     private int currentQuestionIndex = 0;
-    private int timeLeft = 300; // Timer duration in seconds (5 minutes)
+    private static final int TIMER_DURATION = 300;
+    private int timeLeft = TIMER_DURATION; // Timer duration in seconds (5 minutes)
+    private int score = 0; //score tracking
     private ScheduledExecutorService timerExecutor;
+    private boolean isPaused = false;  // Track if the game is paused
+    private Button pauseButton;        // Button to toggle pause/resume
 
     /**
      * The main method that launches the JavaFX application.
@@ -45,7 +51,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         Label banner = new Label("Welcome to the Quiz Game!");
         banner.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
-
         Button startButton = new Button("Start Game");
         startButton.setStyle("-fx-font-size: 18px;");
         startButton.setOnAction(e -> showGameScreen(primaryStage));
@@ -53,12 +58,11 @@ public class Main extends Application {
         VBox welcomeLayout = new VBox(20, banner, startButton);
         welcomeLayout.setPrefSize(400, 300);
         welcomeLayout.setStyle("-fx-alignment: center;");
-
         primaryStage.setTitle("Quiz Game");
         primaryStage.setScene(new Scene(welcomeLayout));
         primaryStage.show();
     }
-
+//TODO: You could possibly add somewhere in here sound effects for getting a right/wrong answer.
     /**
      * Transitions to the game screen, initializes the quiz game, and loads questions.
      *
@@ -71,8 +75,12 @@ public class Main extends Application {
             quizGame.loadQuestions("src/main/resources/questions.txt");
         } catch (Exception e) {
             showError("Error loading questions: " + e.getMessage());
+            e.printStackTrace();
             return;
         }
+
+        //Randomize the order of questions
+        Collections.shuffle(quizGame.getQuestions()); //shuffle the questions
 
         questionLabel = new Label();
         questionLabel.setWrapText(true);
@@ -81,10 +89,18 @@ public class Main extends Application {
         timerLabel = new Label("Time left: " + timeLeft + " seconds");
         timerLabel.setStyle("-fx-font-size: 16px;");
 
+        scoreLabel = new Label("Score: " + score); // intialize score label
+        scoreLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+
         optionsBox = new VBox(15);
 
-        VBox gameLayout = new VBox(30, questionLabel, optionsBox, timerLabel);
-        gameLayout.setPrefSize(600, 400);
+        // Create Pause Button
+        pauseButton = new Button("Pause Timer");
+        pauseButton.setStyle("-fx-font-size: 16px;");
+        pauseButton.setOnAction(e -> togglePause());  // Set action for pause/resume
+
+        VBox gameLayout = new VBox(30, questionLabel, optionsBox, scoreLabel, timerLabel, pauseButton);
+        gameLayout.setPrefSize(800, 800); //adjusted for larger window size
         gameLayout.setStyle("-fx-padding: 30; -fx-alignment: top-center; -fx-spacing: 20;");
 
         primaryStage.setScene(new Scene(gameLayout));
@@ -101,7 +117,6 @@ public class Main extends Application {
         showQuestion();
         startTimer();
     }
-
     /**
      * Displays the current question and its answer options.
      * <p>
@@ -134,7 +149,6 @@ public class Main extends Application {
             optionsBox.getChildren().addAll(trueButton, falseButton);
         }
     }
-
     /**
      * Handles the user's answer selection.
      * <p>
@@ -147,6 +161,8 @@ public class Main extends Application {
         Question question = quizGame.getQuestions().get(currentQuestionIndex);
         if (question.checkAnswer(answer)) {
             quizGame.incrementScore();
+            score++; //
+            scoreLabel.setText("Score: " + score); // update score label after each correct answer
         }
         currentQuestionIndex++;
         showQuestion();
@@ -161,7 +177,7 @@ public class Main extends Application {
     public void startTimer() {
         timerExecutor = Executors.newSingleThreadScheduledExecutor();
         timerExecutor.scheduleAtFixedRate(() -> {
-            if (timeLeft > 0) {
+            if (timeLeft > 0 && !isPaused) { //check if game is not paused
                 timeLeft--;
                 Platform.runLater(() -> timerLabel.setText("Time left: " + timeLeft + " seconds"));
             } else {
@@ -169,6 +185,18 @@ public class Main extends Application {
                 Platform.runLater(this::endGame);
             }
         }, 0, 1, TimeUnit.SECONDS);
+    }
+
+    /** Pauses/resumes timer
+     *
+     */
+    private void togglePause() {
+        isPaused = !isPaused;  // Toggle the pause
+        if (isPaused) {
+            pauseButton.setText("Resume Timer");  //Change button text when paused
+        } else {
+            pauseButton.setText("Pause Timer");  //Change button text when resumed
+        }
     }
 
     /**
@@ -180,7 +208,7 @@ public class Main extends Application {
     public void endGame() {
         quizGame.endGame();
         timerExecutor.shutdown();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Game Over! Your Score: " + quizGame.getScore());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION,"Game Over! Your Score: " + quizGame.getScore());
         alert.showAndWait();
 
         try {

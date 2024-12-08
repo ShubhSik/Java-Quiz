@@ -9,7 +9,6 @@ package edu.sdccd.cisc190;
  * </p>
  */
 public abstract class Game {
-
     /**
      * The name of the game. 
      */
@@ -20,13 +19,11 @@ public abstract class Game {
 
     private boolean isRunning;
 
-
     /**
      * Constructor that initializes the game with a specified name.
      *
      * @param gameName the name of the game.
      */
-
     public Game(String gameName) {
         this.gameName = gameName;
         this.isRunning = false;

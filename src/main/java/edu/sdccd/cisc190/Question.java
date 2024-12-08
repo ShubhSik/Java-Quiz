@@ -43,3 +43,4 @@ public abstract class Question {
      */
     public abstract boolean checkAnswer(String answer);
 }
+//TODO: a possible implementation that you could add is changing and varying the difficulty levels for the questions such as easy, medium, or hard.
