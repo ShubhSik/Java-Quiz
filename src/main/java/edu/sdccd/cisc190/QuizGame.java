@@ -54,11 +54,16 @@ public class QuizGame extends Game {
 
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(";");
-            if (parts[0].equalsIgnoreCase("MC")) {
-                questions.add(new MultipleChoiceQuestion(parts[1], parts[2], parts[3].split(",")));
-            } else if (parts[0].equalsIgnoreCase("TF")) {
-                questions.add(new TrueFalseQuestion(parts[1], parts[2]));
-            }
+            switch (parts[0].toUpperCase()) {
+                case "MC":
+                    questions.add(new MultipleChoiceQuestion(parts[1], parts[2], parts[3].split(",")));
+                    break;
+                case "TF":
+                    questions.add(new TrueFalseQuestion(parts[1], parts[2]));
+                    break;
+                default:
+                    System.out.println("Unknown question type: " + parts[0]);
+            } // Replaced if-else with a switch which improves readability and scalable for handling multiple cases. For example, if a new case is introduced such as short answers
         }
         reader.close();
     }
