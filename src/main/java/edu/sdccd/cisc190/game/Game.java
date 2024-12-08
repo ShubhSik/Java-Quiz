@@ -1,5 +1,5 @@
 
-package edu.sdccd.cisc190;
+package edu.sdccd.cisc190.game;
 /**
  * Abstract base class that provides the structure for any game.
  * <p>
@@ -9,7 +9,7 @@ package edu.sdccd.cisc190;
  * </p>
  */
 public abstract class Game {
-
+//Space out Javdocs and code for better style and readability/understanding//
     /**
      * The name of the game. 
      */
@@ -19,6 +19,10 @@ public abstract class Game {
      */
 
     private boolean isRunning;
+    //TODO: Use protected visibility for 'isRunning' if subclasses need access. Otherwise, leave it private
+ // This could be protected depending on design needs.
+
+
 
 
     /**
@@ -31,20 +35,24 @@ public abstract class Game {
         this.gameName = gameName;
         this.isRunning = false;
     }
+    //TODO: create a logger to log instead of using system.out
     /**
      * Starts the game by setting the status to running and printing a start message.
      */
     public void startGame() {
         isRunning = true;
-        System.out.println(gameName + " has started!");
+        System.out.printf("%s has started!", gameName);
     }
     /**
      * Ends the game by setting the status to not running and printing an end message.
      */
     public void endGame() {
         isRunning = false;
+
+        //TODO: use a formatted print statement just like in startGame()
         System.out.println(gameName + " has ended.");
     }
+
     /**
      * Checks whether the game is currently running.
      *

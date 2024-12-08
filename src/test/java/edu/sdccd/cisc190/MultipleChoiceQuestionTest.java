@@ -1,5 +1,6 @@
 package edu.sdccd.cisc190;
 
+import edu.sdccd.cisc190.question.MultipleChoiceQuestion;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,4 +1,4 @@
-package edu.sdccd.cisc190;
+package edu.sdccd.cisc190.question;
 
 /**
  * Represents a general question in a quiz or game.
@@ -43,3 +43,6 @@ public abstract class Question {
      */
     public abstract boolean checkAnswer(String answer);
 }
+//TODO: Demonstrate polymorphism by adding a `displayQuestion()` method in the base class
+//      and overriding it in child classes to provide specific behavior.
+
